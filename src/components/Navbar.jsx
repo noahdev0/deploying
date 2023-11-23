@@ -29,6 +29,11 @@ const MobileMenu = ({ active, setActive, sectionRefs }) => {
           </Link>
         </motion.li>
       ))}
+      <motion.li whileHover={{ scale: 1.02 }}>
+        <Link href="/register" className="active">
+          Acheté
+        </Link>
+      </motion.li>
     </motion.ul>
   );
 };
