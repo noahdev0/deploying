@@ -1,20 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Link from "next/link";
+import { set } from "mongoose";
 
 export default function Register() {
   //make a pop up window to show the user that he is registered
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [title, setTitle] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
+  const [selectedOption, setSelectedOption] = useState("option1");
+  const [message, setMessage] = useState("");
+
   const [errors, setErrors] = useState({});
   const [sending, setSending] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("");
-
-  const handleOptionChange = (event) => {
-    setSelectedOption(event.target.value);
-  };
 
   const validateForm = () => {
     const errors = {};
@@ -23,16 +24,21 @@ export default function Register() {
       errors.name = "Name is required";
     }
     if (!lastName) {
-      errors.lastName = "Last name is required";
+      errors.lastName = "Last Name is required";
+    }
+    if (!title) {
+      errors.title = "Title is required";
     }
     if (!email) {
       errors.email = "Email is required";
     } else if (!/\S+@\S+\.\S+/.test(email)) {
       errors.email = "Email is invalid";
     }
+
     if (!address) {
       errors.address = "Address is required";
     }
+
     if (!phone) {
       errors.phone = "Phone is required";
     } else if (!/^\d+$/.test(phone)) {
@@ -45,6 +51,7 @@ export default function Register() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const data = {};
 
     if (validateForm()) {
       try {
@@ -52,9 +59,12 @@ export default function Register() {
         await axios.post("/api/addUser", {
           name,
           lastName,
+          title,
           email,
           address,
           phone,
+          message,
+          selectedOption,
         });
         console.log("success");
         setName("");
@@ -62,19 +72,37 @@ export default function Register() {
         setEmail("");
         setAddress("");
         setPhone("");
+        setMessage("");
       } catch (error) {
-        if ((error = "Email already exists")) {
-          alert("Email already exists");
-          return;
-        }
+        // if (error.response && error.response.data === "Email already exists") {
+        //   alert("Email already exists");
+        //   return;
+        // }
+        // if (error.response && error.response.data === "Phone already exists") {
+        //   alert("Phone already exists");
+        //   return;
+        // }
+
         alert("Something went wrong");
-        // Handle error here
       } finally {
         setSending(false);
       }
     }
   };
 
+  useEffect(() => {
+    if (!sending) {
+      setName("");
+      setLastName("");
+      setEmail("");
+      setAddress("");
+      setPhone("");
+    }
+  }, [sending]);
+
+  const handleOptionChange = (event) => {
+    setSelectedOption(event.target.value);
+  };
   return (
     <div className="container">
       <h1>Register</h1>
@@ -111,6 +139,20 @@ export default function Register() {
             </div>
           </div>
         </div>
+        <div className="form-group">
+          <label htmlFor="title">Title</label>
+          <input
+            type="text"
+            name="title"
+            className={`form-control ${errors.title ? "is-invalid" : ""}`}
+            value={title}
+            onChange={(event) => setTitle(event.target.value)}
+          />
+          {errors.title && (
+            <div className="invalid-feedback">{errors.title}</div>
+          )}
+        </div>
+
         <div className="form-group">
           <label htmlFor="email">Email</label>
           <input
@@ -173,16 +215,6 @@ export default function Register() {
               />
               Option 2
             </label>
-            <label>
-              <input
-                type="radio"
-                name="option"
-                value="option3"
-                checked={selectedOption === "option3"}
-                onChange={handleOptionChange}
-              />
-              Option 3
-            </label>
           </div>
         </div>
 
@@ -194,7 +226,7 @@ export default function Register() {
               type="text"
               name="input1"
               className="form-control"
-              onChange={(event) => setInput1(event.target.value)}
+              onChange={(event) => setMessage(event.target.value)}
             />
           </div>
         )}
@@ -205,24 +237,19 @@ export default function Register() {
               type="text"
               name="input2"
               className="form-control"
-              onChange={(event) => setInput2(event.target.value)}
+              onChange={(event) => setMessage(event.target.value)}
             />
           </div>
         )}
-        {selectedOption === "option3" && (
-          <div className="form-group">
-            <label htmlFor="input3">Input 3</label>
-            <input
-              type="text"
-              name="input3"
-              className="form-control"
-              onChange={(event) => setInput3(event.target.value)}
-            />
-          </div>
-        )}
-        <button type="submit" className="btn btn-primary" disabled={sending}>
-          {sending ? "Sending..." : "Submit"}
-        </button>
+
+        <div className="d-flex w-full align-middle justify-between my-16">
+          <button type="submit" className="btn btn-primary" disabled={sending}>
+            {sending ? "Sending..." : "Submit"}
+          </button>
+          <Link href="/" className="btn btn-secondary ml-2">
+            Home
+          </Link>
+        </div>
       </form>
     </div>
   );

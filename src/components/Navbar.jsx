@@ -78,7 +78,7 @@ const Navbar = () => {
               ) : (
                 <ul className="nav">
                   {sections.map((section, index) => (
-                    <motion.li whileHover={{ scale: 1.1 }} key={section.id}>
+                    <motion.li whileHover={{ scale: 1.06 }} key={section.id}>
                       <Link
                         href={`#${section.id}`}
                         className={active === section.id ? "active" : ""}
@@ -87,7 +87,13 @@ const Navbar = () => {
                         {section.name}
                       </Link>
                     </motion.li>
+                    
                   ))}
+                  <motion.li whileHover={{ scale: 1.06 }}>
+                    <Link href="/register" className="active">
+                      Acheté
+                    </Link>
+                  </motion.li>
                 </ul>
               )}
               <span

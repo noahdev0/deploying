@@ -2,6 +2,10 @@ import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
   // Define the schema for your data
+  title: {
+    type: String,
+    required: true,
+  },
   name: {
     type: String,
     required: true,
@@ -10,12 +14,12 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+
   email: {
     type: String,
     required: true,
     unique: true,
   },
-
   address: {
     type: String,
     required: true,
@@ -24,8 +28,14 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-
-  // Add more fields as needed
+  message: {
+    type: String,
+    required: true,
+  },
+  selectedOption: {
+    type: String,
+    required: true,
+  },
 });
 
 // Create a model for the schema

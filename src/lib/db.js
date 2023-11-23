@@ -8,7 +8,7 @@ const connectToDatabase = async () => {
       await mongoose.connect(uri, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
-        dbName: "csenClients", // Specify the database name
+        dbName: process.env.MONGODB_DB, 
       });
       console.log("Connected to database");
     }

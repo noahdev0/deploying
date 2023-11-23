@@ -1,6 +1,7 @@
 import React from "react";
 import rpa from "../images/RPA Plug-in.png";
 import Image from "next/image";
+import Link from "next/link";
 // import "./hero.css";
 
 export default function Hero() {
@@ -28,11 +29,11 @@ export default function Hero() {
                   Notre solution offre une approche innovante pour évaluer et
                   gérer les risques sismiques dans le domaine du bâtiment.
                 </p>
-                <a
+                <Link
                   href="#product"
                   className=" bg-blue-600 text-center text-yellow-50 p-3 px-4 rounded hover:bg-blue-500 ">
                   Télécharger
-                </a>
+                </Link>
               </div>
               <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 ">
                 <Image src={rpa} alt="RPA Plug-in" className="rpa-image" />

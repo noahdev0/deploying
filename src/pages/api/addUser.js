@@ -10,11 +10,6 @@ export default async function handler(req, res) {
     if (existingUser) {
       return res.status(400).json({ error: "Email already exists" });
     }
-    //check if the phone already exists
-    const existingPhone = await User.findOne({ phone: req.body.phone });
-    if (existingPhone) {
-      return res.status(400).json({ error: "Phone already exists" });
-    }
 
     const user = await User.create(req.body);
 
