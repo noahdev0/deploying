@@ -27,6 +27,7 @@ const userSchema = new mongoose.Schema({
   phone: {
     type: String,
     required: true,
+    unique: true,
   },
   message: {
     type: String,
@@ -39,6 +40,6 @@ const userSchema = new mongoose.Schema({
 });
 
 // Create a model for the schema
-const User = mongoose.model("User", userSchema);
+const User = mongoose.models.User || mongoose.model("User", userSchema);
 
 export default User;

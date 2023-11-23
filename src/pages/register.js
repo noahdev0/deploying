@@ -67,21 +67,15 @@ export default function Register() {
           selectedOption,
         });
         console.log("success");
-        setName("");
-        setLastName("");
-        setEmail("");
-        setAddress("");
-        setPhone("");
-        setMessage("");
       } catch (error) {
-        // if (error.response && error.response.data === "Email already exists") {
-        //   alert("Email already exists");
-        //   return;
-        // }
-        // if (error.response && error.response.data === "Phone already exists") {
-        //   alert("Phone already exists");
-        //   return;
-        // }
+        if (error && error === "Email already exists") {
+          alert("Email already exists");
+          return;
+        }
+        if (error && error === "Phone already exists") {
+          alert("Phone already exists");
+          return;
+        }
 
         alert("Something went wrong");
       } finally {
@@ -94,9 +88,11 @@ export default function Register() {
     if (!sending) {
       setName("");
       setLastName("");
+      setTitle("");
       setEmail("");
       setAddress("");
       setPhone("");
+      setMessage("");
     }
   }, [sending]);
 
@@ -226,6 +222,7 @@ export default function Register() {
               type="text"
               name="input1"
               className="form-control"
+              value={message}
               onChange={(event) => setMessage(event.target.value)}
             />
           </div>
@@ -236,6 +233,7 @@ export default function Register() {
             <input
               type="text"
               name="input2"
+              value={message}
               className="form-control"
               onChange={(event) => setMessage(event.target.value)}
             />
