@@ -1,43 +1,77 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import logo from "../images/navLogo.png";
 import { sections } from "../utils";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 
-/**
- * Navbar component that displays a sticky header with a logo and menu items
- * @returns {JSX.Element} JSX element representing the Navbar component
- */
-export default function Navbar() {
+const MobileMenu = ({ active, setActive, sectionRefs }) => {
+  const variants = {
+    open: { opacity: 0, y: -20 },
+    closed: { opacity: 1, y: 0 },
+  };
   const [navbar, setNavbar] = useState(false);
+  return (
+    <motion.ul
+      className="nav"
+      style={navbar ? { display: "none" } : { display: "block" }}
+      variants={variants}
+      animate={navbar ? "open" : "closed"}
+      transition={{ duration: 0.3 }}>
+      {sections.map((section, index) => (
+        <motion.li whileHover={{ scale: 1.1 }} key={section.id}>
+          <Link
+            href={`#${section.id}`}
+            className={active === section.id ? "active" : ""}
+            onClick={() => setActive(section.id)}
+            ref={(el) => (sectionRefs.current[index] = el)}>
+            {section.name}
+          </Link>
+        </motion.li>
+      ))}
+    </motion.ul>
+  );
+};
+
+const Navbar = () => {
+  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [active, setActive] = useState("");
   const sectionRefs = useRef([]);
 
-  if (typeof window !== "undefined" && window.innerWidth < 992) {
-    const variants = {
-      open: { opacity: 1, y: 0 },
-      closed: { opacity: 0, y: -20 },
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 992) {
+        setMobileMenuOpen(false);
+      }
     };
-    return (
-      <header className="header-area header-sticky">
-        <div className="container">
-          <div className="row">
-            <div className="col-12">
-              <nav className="main-nav ">
-                {/* <!-- ***** Logo Start ***** --> */}
-                <Link href="/" className="logo">
-                  <Image src={logo} alt="LOGO" width={100} height={100} />
-                </Link>
-                {/* <!-- ***** Logo End ***** --> */}
-                {/* <!-- ***** Menu Start ***** --> */}
 
-                <motion.ul
-                  className="nav"
-                  style={navbar ? { display: "block" } : { display: "none" }}
-                  variants={variants}
-                  animate={navbar ? "open" : "closed"}
-                  transition={{ duration: 0.3 }}>
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  return (
+    <header className="header-area header-sticky">
+      <div className="container">
+        <div className="row">
+          <div className="col-12">
+            <nav className="main-nav">
+              {/* <!-- ***** Logo Start ***** --> */}
+              <Link href="/" className="logo">
+                <Image src={logo} alt="LOGO" width={100} />
+              </Link>
+              {/* <!-- ***** Logo End ***** --> */}
+              {/* <!-- ***** Menu Start ***** --> */}
+              {isMobileMenuOpen ? (
+                <MobileMenu
+                  active={active}
+                  setActive={setActive}
+                  sectionRefs={sectionRefs}
+                />
+              ) : (
+                <ul className="nav">
                   {sections.map((section, index) => (
                     <motion.li whileHover={{ scale: 1.1 }} key={section.id}>
                       <Link
@@ -49,60 +83,20 @@ export default function Navbar() {
                       </Link>
                     </motion.li>
                   ))}
-                </motion.ul>
-                <span
-                  className={`menu-trigger ${navbar ? "active" : ""}`}
-                  onClick={() => setNavbar(!navbar)}>
-                  <span></span>
-                </span>
-                {/* <!-- ***** Menu End ***** --> */}
-              </nav>
-            </div>
+                </ul>
+              )}
+              <span
+                className={`menu-trigger ${isMobileMenuOpen ? "active" : ""}`}
+                onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}>
+                <span></span>
+              </span>
+              {/* <!-- ***** Menu End ***** --> */}
+            </nav>
           </div>
         </div>
-      </header>
-    );
-  } else {
-    return (
-      <header className="header-area header-sticky">
-        <div className="container">
-          <div className="row">
-            <div className="col-12">
-              <nav className="main-nav ">
-                {/* <!-- ***** Logo Start ***** --> */}
-                <Link href="/" className="logo">
-                  <Image src={logo} alt="LOGO" width={100}  />
-                </Link>
-                {/* <!-- ***** Logo End ***** --> */}
-                {/* <!-- ***** Menu Start ***** --> */}
+      </div>
+    </header>
+  );
+};
 
-                <motion.ul
-                  className="nav"
-                  style={navbar ? { display: "block" } : { display: "none" }}>
-                  {sections.map((section, index) => (
-                    <motion.li whileHover={{ scale: 1.1 }} key={section.id}>
-                      <Link
-                        href={`#${section.id}`}
-                        className={active === section.id ? "active" : ""}
-                        onClick={() => setActive(section.id)}
-                        ref={(el) => (sectionRefs.current[index] = el)}>
-                        {section.name}
-                      </Link>
-                    </motion.li>
-                  ))}
-                </motion.ul>
-                <Link
-                  href="#"
-                  className={`menu-trigger ${navbar ? "active" : ""}`}
-                  onClick={() => setNavbar(!navbar)}>
-                  <span>Menu</span>
-                </Link>
-                {/* <!-- ***** Menu End ***** --> */}
-              </nav>
-            </div>
-          </div>
-        </div>
-      </header>
-    );
-  }
-}
+export default Navbar;
