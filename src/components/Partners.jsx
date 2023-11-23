@@ -1,7 +1,7 @@
 import React from "react";
-// import "./partners.css";
-import anpt from "../images/Logo Partners/Logo ANPT.png";
-import scte from "../images/Logo Partners/Logo SCTE.png";
+import Image from "next/image";
+import anpt from "../../public/Logo Partners/ANPT.png";
+import scte from "../../public/Logo Partners/SCTE.png";
 
 /**
  * Renders a section displaying the partners of the company.
@@ -18,7 +18,7 @@ export default function Partners() {
           <div className="row w-100">
             <div className="col-12 col-md-6 col-sm-12 text-center">
               <a href="https:/www.anpt.dz/">
-                <img
+                <Image
                   src={anpt}
                   alt="ANPT Logo"
                   className="w-full object-contain clients1_logo"
@@ -27,7 +27,7 @@ export default function Partners() {
             </div>
             <div className="col-12 col-md-6 col-sm-12 text-center">
               <a href="http://www.scte-dz.com/cms/">
-                <img
+                <Image
                   src={scte}
                   alt="SCTE Logo"
                   className="w-full object-contain clients1_logo"

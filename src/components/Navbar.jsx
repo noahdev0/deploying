@@ -53,7 +53,7 @@ export default function Navbar() {
                 <span
                   className={`menu-trigger ${navbar ? "active" : ""}`}
                   onClick={() => setNavbar(!navbar)}>
-                  <span>Menu</span>
+                  <span></span>
                 </span>
                 {/* <!-- ***** Menu End ***** --> */}
               </nav>
