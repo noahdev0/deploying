@@ -7,8 +7,8 @@ import Link from "next/link";
 
 const MobileMenu = ({ active, setActive, sectionRefs }) => {
   const variants = {
-    open: { opacity: 0, y: -20 },
-    closed: { opacity: 1, y: 0 },
+    open: { opacity: 0, y: 0 },
+    closed: { opacity: 1, y: 20 },
   };
   const [navbar, setNavbar] = useState(false);
   return (
@@ -17,9 +17,9 @@ const MobileMenu = ({ active, setActive, sectionRefs }) => {
       style={navbar ? { display: "none" } : { display: "block" }}
       variants={variants}
       animate={navbar ? "open" : "closed"}
-      transition={{ duration: 0.3 }}>
+      transition={{ duration: 0.4 }}>
       {sections.map((section, index) => (
-        <motion.li whileHover={{ scale: 1.1 }} key={section.id}>
+        <motion.li whileHover={{ scale: 1.02 }} key={section.id}>
           <Link
             href={`#${section.id}`}
             className={active === section.id ? "active" : ""}
