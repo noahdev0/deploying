@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const connectDB = async () => {
+const connectToDatabase = async () => {
   const uri = process.env.MONGODB_URI;
 
   try {
@@ -10,11 +10,11 @@ const connectDB = async () => {
         useUnifiedTopology: true,
         dbName: "csenClients", // Specify the database name
       });
-      console.log("db connected");
+      console.log("Connected to database");
     }
   } catch (error) {
     console.log(error);
   }
 };
 
-export default connectDB;
+export default connectToDatabase;
