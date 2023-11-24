@@ -4,19 +4,12 @@
 
 html,
 body {
-  background: #fff;
+ 
   font-family: "Raleway", sans-serif;
 }
 
-::selection {
-  background: #2302dc;
-  color: #fff;
-}
 
-::-moz-selection {
-  background: #2302dc;
-  color: #fff;
-}
+
 
 .section {
   position: relative;

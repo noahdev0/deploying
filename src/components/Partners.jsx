@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import anpt from "../../public/Logo Partners/ANPT.png";
 import scte from "../../public/Logo Partners/SCTE.png";
+import {motion} from "framer-motion";
 
 /**
  * Renders a section displaying the partners of the company.

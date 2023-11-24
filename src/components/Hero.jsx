@@ -2,6 +2,7 @@ import React from "react";
 import rpa from "../images/RPA Plug-in.png";
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 // import "./hero.css";
 
 export default function Hero() {
@@ -35,9 +36,11 @@ export default function Hero() {
                   Télécharger
                 </Link>
               </div>
-              <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 ">
+              <motion.div 
+              
+              className="col-xl-6 col-lg-6 col-md-12 col-sm-12 ">
                 <Image src={rpa} alt="RPA Plug-in" className="rpa-image" />
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import axios from "axios";
 import Link from "next/link";
-import { set } from "mongoose";
+import { Style } from "@/utils/styles";
 
 export default function Register() {
   //make a pop up window to show the user that he is registered
@@ -20,23 +21,10 @@ export default function Register() {
   const validateForm = () => {
     const errors = {};
 
-    if (!name) {
-      errors.name = "Name is required";
-    }
-    if (!lastName) {
-      errors.lastName = "Last Name is required";
-    }
-    if (!title) {
-      errors.title = "Title is required";
-    }
     if (!email) {
       errors.email = "Email is required";
     } else if (!/\S+@\S+\.\S+/.test(email)) {
       errors.email = "Email is invalid";
-    }
-
-    if (!address) {
-      errors.address = "Address is required";
     }
 
     if (!phone) {
@@ -68,12 +56,14 @@ export default function Register() {
         });
         console.log("success");
       } catch (error) {
-        if (error && error === "Email already exists") {
+        console.error(error.response.data.error);
+
+        if (error && error.response.data.error === "Email already exists") {
           alert("Email already exists");
           return;
         }
-        if (error && error === "Phone already exists") {
-          alert("Phone already exists");
+        if (error && error.response.data.error === "Phone already exists") {
+          alert("Phone Number already exists");
           return;
         }
 
@@ -92,6 +82,7 @@ export default function Register() {
       setEmail("");
       setAddress("");
       setPhone("");
+      setSelectedOption("option1");
       setMessage("");
     }
   }, [sending]);
@@ -100,74 +91,91 @@ export default function Register() {
     setSelectedOption(event.target.value);
   };
   return (
-    <div className="container">
-      <h1>Register</h1>
-      <form onSubmit={handleSubmit}>
+    <div className="w-full min-h-screen  bg-gray-700 overflow-x-hidden">
+      <motion.h1
+        className="text-4xl text-center text-white font-bold mb-20"
+        initial={{ opacity: 0, y: -20, scale: 0.5 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        drag
+        dragConstraints={{ left: 10, right: 10, top: 20, bottom: 20 }}
+        transition={{ duration: 0.5 }}>
+        Register
+      </motion.h1>
+      <form
+        onSubmit={handleSubmit}
+        className="container mx-auto px-4 sm:px-8 max-w-3xl">
         <div className="form-group">
           <div className="row">
             <div className="col-lg-6">
-              <label htmlFor="name">Name</label>
+              <label htmlFor="name" className={Style.lable}>
+                First name
+              </label>
               <input
+                id="name"
                 type="text"
                 name="name"
-                className={`form-control ${errors.name ? "is-invalid" : ""}`}
+                className={Style.input}
                 value={name}
                 onChange={(event) => setName(event.target.value)}
+                required
               />
-              {errors.name && (
-                <div className="invalid-feedback">{errors.name}</div>
-              )}
             </div>
             <div className="col-lg-6">
-              <label htmlFor="lastName">Last Name</label>
+              <label htmlFor="lastName" className={Style.lable}>
+                Last Name
+              </label>
               <input
-                type="text"
+                id="lastName"
                 name="lastName"
-                className={`form-control ${
+                type="text"
+                className={`${Style.input} ${
                   errors.lastName ? "is-invalid" : ""
                 }`}
                 value={lastName}
                 onChange={(event) => setLastName(event.target.value)}
+                required
               />
-              {errors.lastName && (
-                <div className="invalid-feedback">{errors.lastName}</div>
-              )}
             </div>
           </div>
         </div>
         <div className="form-group">
-          <label htmlFor="title">Title</label>
+          <label htmlFor="title" className={Style.lable}>
+            Title
+          </label>
           <input
             type="text"
             name="title"
-            className={`form-control ${errors.title ? "is-invalid" : ""}`}
+            className={`${Style.input} ${errors.title ? "is-invalid" : ""}`}
             value={title}
             onChange={(event) => setTitle(event.target.value)}
+            required
           />
-          {errors.title && (
-            <div className="invalid-feedback">{errors.title}</div>
-          )}
         </div>
 
         <div className="form-group">
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email" className={Style.lable}>
+            Email
+          </label>
           <input
             type="text"
             name="email"
-            className={`form-control ${errors.email ? "is-invalid" : ""}`}
+            className={`${Style.input} ${errors.email ? "is-invalid" : ""}`}
             value={email}
             onChange={(event) => setEmail(event.target.value)}
+            required
           />
           {errors.email && (
             <div className="invalid-feedback">{errors.email}</div>
           )}
         </div>
         <div className="form-group">
-          <label htmlFor="address">Address</label>
+          <label htmlFor="address" className={Style.lable}>
+            Address
+          </label>
           <input
             type="text"
             name="address"
-            className={`form-control ${errors.address ? "is-invalid" : ""}`}
+            className={`${Style.input} ${errors.address ? "is-invalid" : ""}`}
             value={address}
             onChange={(event) => setAddress(event.target.value)}
           />
@@ -176,11 +184,13 @@ export default function Register() {
           )}
         </div>
         <div className="form-group">
-          <label htmlFor="phone">Phone</label>
+          <label htmlFor="phone" className={Style.lable}>
+            Phone
+          </label>
           <input
             type="text"
             name="phone"
-            className={`form-control ${errors.phone ? "is-invalid" : ""}`}
+            className={`${Style.input} ${errors.phone ? "is-invalid" : ""}`}
             value={phone}
             onChange={(event) => setPhone(event.target.value)}
           />
@@ -189,9 +199,11 @@ export default function Register() {
           )}
         </div>
         <div className="form-group">
-          <label htmlFor="option">Option</label>
+          <label htmlFor="option" className={Style.lable}>
+            Option
+          </label>
           <div>
-            <label>
+            <label className={Style.lable}>
               <input
                 type="radio"
                 name="option"
@@ -201,7 +213,7 @@ export default function Register() {
               />
               Option 1
             </label>
-            <label>
+            <label className={Style.lable}>
               <input
                 type="radio"
                 name="option"
@@ -217,11 +229,13 @@ export default function Register() {
         {/* Show different input based on selected option */}
         {selectedOption === "option1" && (
           <div className="form-group">
-            <label htmlFor="input1">Input 1</label>
+            <label htmlFor="input1" className={Style.lable}>
+              Input 1
+            </label>
             <input
               type="text"
               name="input1"
-              className="form-control"
+              className={`block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
               value={message}
               onChange={(event) => setMessage(event.target.value)}
             />
@@ -229,25 +243,29 @@ export default function Register() {
         )}
         {selectedOption === "option2" && (
           <div className="form-group">
-            <label htmlFor="input2">Input 2</label>
+            <label htmlFor="input2" className={Style.lable}>
+              Input 2
+            </label>
             <input
               type="text"
               name="input2"
               value={message}
-              className="form-control"
+              className={`block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
               onChange={(event) => setMessage(event.target.value)}
             />
           </div>
         )}
 
-        <div className="d-flex w-full align-middle justify-between my-16">
+        <motion.div
+          className="d-flex w-full align-middle justify-between my-5 "
+          style={{ overflow: "hidden", position: "relative", bottom: "2vh" }}>
           <button type="submit" className="btn btn-primary" disabled={sending}>
             {sending ? "Sending..." : "Submit"}
           </button>
           <Link href="/" className="btn btn-secondary ml-2">
             Home
           </Link>
-        </div>
+        </motion.div>
       </form>
     </div>
   );
