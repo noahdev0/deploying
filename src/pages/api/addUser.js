@@ -11,14 +11,25 @@ export default async function handler(req, res) {
     });
 
     if (existingUser !== null) {
-      // Add message to existing user
-      existingUser.message.push(req.body.message);
+      // Add message to existing user with date
+      existingUser.message.push({
+        text: req.body.message,
+        date: new Date(),
+      });
       await existingUser.save();
       console.log("success");
       res.status(200).json(existingUser);
     } else {
       // Create new user
-      const user = await User.create(req.body);
+      const user = await User.create({
+        ...req.body,
+        message: [
+          {
+            text: req.body.message,
+            date: new Date(),
+          },
+        ],
+      });
       console.log("success");
       res.status(200).json(user);
     }
