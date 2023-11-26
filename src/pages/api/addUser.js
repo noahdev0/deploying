@@ -5,19 +5,23 @@ export default async function handler(req, res) {
   try {
     await connectToDatabase();
 
-    // Check if email already exists
-    const existingUserEmail = await User.findOne({ email: req.body.email });
-    if (existingUserEmail) {
-      res.status(400).json({ error: "Email already exists" });
-    }
- const existingUserPhone = await User.findOne({ phone: req.body.phone });
-    if (existingUserPhone) {
-      res.status(400).json({ error: "Phone already exists" });
-    }
-    // Create user
-    const user = await User.create(req.body);
+    // Check if email has been used before
+    const existingUser = await User.findOne({
+      email: req.body.email,
+    });
 
-    res.status(200).json(user);
+    if (existingUser !== null) {
+      // Add message to existing user
+      existingUser.message.push(req.body.message);
+      await existingUser.save();
+      console.log("success");
+      res.status(200).json(existingUser);
+    } else {
+      // Create new user
+      const user = await User.create(req.body);
+      console.log("success");
+      res.status(200).json(user);
+    }
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal server error" });

@@ -18,7 +18,6 @@ const userSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    unique: true,
   },
   address: {
     type: String,
@@ -27,12 +26,12 @@ const userSchema = new mongoose.Schema({
   phone: {
     type: String,
     required: true,
-    unique: true,
   },
   message: {
-    type: String,
+    type: [String],
     required: true,
   },
+
   selectedOption: {
     type: String,
     required: true,

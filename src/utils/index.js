@@ -80,7 +80,7 @@ export const testimonials = [
 
 export const features = [
   {
-    image: "",
+    icon: "fa-regular fa-handshake",
     title: "Conforme à la Règlementation Algérienne",
     text: `Notre outil a été développé en étroite 
             collaboration avec des experts dans la conception parasismique des bâtiments et est totalement conforme aux normes 

@@ -29,7 +29,7 @@ export default function Register() {
 
     if (!phone) {
       errors.phone = "Phone is required";
-    } else if (!/^\d+$/.test(phone)) {
+    } else if (!/^\+?\d{10,}$/.test(phone)) {
       errors.phone = "Phone is invalid";
     }
 
@@ -58,16 +58,16 @@ export default function Register() {
       } catch (error) {
         console.error(error.response.data.error);
 
-        if (error && error.response.data.error === "Email already exists") {
-          alert("Email already exists");
+        if (error && error.response.data.error === "Email limit exceeded") {
+          alert("Email limit exceededs");
           return;
         }
-        if (error && error.response.data.error === "Phone already exists") {
-          alert("Phone Number already exists");
+        if (error && error.response.data.error === "Phone limit exceeded") {
+          alert("Phone limit exceeded");
           return;
         }
 
-        alert("Something went wrong");
+        alert(`the error is :${error}`);
       } finally {
         setSending(false);
       }

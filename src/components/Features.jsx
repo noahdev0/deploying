@@ -6,23 +6,16 @@ export default function Features() {
     <section className="features my-5">
       <div className="container">
         <div className="row min-vh-100 gap">
-            {features.map((feature, index) => (
-                <div key={index} className="col-lg-4 col-md-6 col-sm-12">
-                    <div className="feature">
-                    <img
-                        src={`./images/${feature.image}`}
-                        className="w-25 "
-                        alt=""
-                        srcSet=""
-                    />
-                    <h3>{feature.title}</h3>
-                    {/* <!-- make it bigger *************************** h3 *************-** --> */}
-                    <p>{feature.text}</p>
-                    </div>
-                </div>
-                ))
-            }
-          
+          {features.map((feature, index) => (
+            <div key={index} className="col-lg-4 col-md-6 col-sm-12">
+              <div className="feature">
+                <i className={`${feature.icon}`}></i>
+                <h3>{feature.title}</h3>
+                {/* <!-- make it bigger *************************** h3 *************-** --> */}
+                <p>{feature.text}</p>
+              </div>
+            </div>
+          ))}
 
           <div className="col-12  col-md-6 col-lg-6">
             <a

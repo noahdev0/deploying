@@ -30,7 +30,7 @@ const MobileMenu = ({ active, setActive, sectionRefs }) => {
         </motion.li>
       ))}
       <motion.li whileHover={{ scale: 1.02 }}>
-        <Link href="/register" className="active">
+        <Link href="/register" className="btn btn-check">
           Acheté
         </Link>
       </motion.li>
@@ -87,11 +87,10 @@ const Navbar = () => {
                         {section.name}
                       </Link>
                     </motion.li>
-                    
                   ))}
                   <motion.li whileHover={{ scale: 1.06 }}>
-                    <Link href="/register" className="active">
-                      Acheté
+                    <Link href="/register" className="text-cyan-700">
+                      Acheteé
                     </Link>
                   </motion.li>
                 </ul>
