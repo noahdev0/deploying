@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import logo from "../images/logo1.png";
+import logo from "../images/Logo1.png";
 import { products } from "../utils";
 import { motion } from "framer-motion";
 export default function Services() {
