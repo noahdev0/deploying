@@ -255,7 +255,7 @@ export default function Register() {
                 checked={status === "etudiant"}
                 onChange={handleStatus}
               />
-              Etudiant
+              Etudiant  
             </label>
           </div>
         </div>
