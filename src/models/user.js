@@ -2,10 +2,6 @@ import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
   // Define the schema for your data
-  title: {
-    type: String,
-    required: true,
-  },
   name: {
     type: String,
     required: true,
@@ -14,26 +10,36 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-
+  title: {
+    type: String,
+    required: true,
+  },
   email: {
     type: String,
     required: true,
   },
   address: {
     type: String,
-    required: true,
+    required: false,
   },
   phone: {
     type: String,
     required: true,
   },
-  message: {
-    type: [Object],
+  status: {
+    type: String,
     required: true,
   },
-
-  selectedOption: {
+  company: {
     type: String,
+    required: false,
+  },
+  target: {
+    type: String,
+    required: true,
+  },
+  message: {
+    type: [Object],
     required: true,
   },
 });

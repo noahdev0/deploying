@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import logo from "../images/navLogo.png";
+import logo from "../images/logoNav.png";
 import { sections } from "../utils";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -10,6 +10,7 @@ const MobileMenu = ({ active, setActive, sectionRefs }) => {
     open: { opacity: 0, y: 0 },
     closed: { opacity: 1, y: 20 },
   };
+
   const [navbar, setNavbar] = useState(false);
   return (
     <motion.ul
@@ -30,8 +31,8 @@ const MobileMenu = ({ active, setActive, sectionRefs }) => {
         </motion.li>
       ))}
       <motion.li whileHover={{ scale: 1.02 }}>
-        <Link href="/register" className="btn btn-check">
-          Acheté
+        <Link href="/register" className=" text-cyan-700 bg-slate-800">
+          Acheter
         </Link>
       </motion.li>
     </motion.ul>
@@ -59,14 +60,15 @@ const Navbar = () => {
 
   return (
     <header className="header-area header-sticky">
-      <div className="container">
-        <div className="row">
-          <div className="col-12">
-            <nav className="main-nav">
+      <div className="container h-full">
+        <div className="row h-full">
+          <div className="col-12 ">
+            <nav className="main-nav ">
               {/* <!-- ***** Logo Start ***** --> */}
-              <Link href="/" className="logo">
-                <Image src={logo} alt="LOGO" width={100} />
+              <Link href="/" className="mx-8">
+                <Image src={logo} alt="CSEN logo" width={100} height={100} />
               </Link>
+
               {/* <!-- ***** Logo End ***** --> */}
               {/* <!-- ***** Menu Start ***** --> */}
               {isMobileMenuOpen ? (
@@ -90,7 +92,7 @@ const Navbar = () => {
                   ))}
                   <motion.li whileHover={{ scale: 1.06 }}>
                     <Link href="/register" className="text-cyan-700">
-                      Acheteé
+                      Acheter
                     </Link>
                   </motion.li>
                 </ul>

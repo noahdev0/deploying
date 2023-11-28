@@ -12,7 +12,7 @@ export default function Partners() {
   return (
     <section className="partners">
       <div className="container h-100">
-        <div className="row d-flex justify-content-between h-100 w-100">
+        <div className="row d-flex justify-content-between h-100 w-100 mx-auto">
           <div className="col-lg-12 text-center m-auto">
             <h2>Our Partners</h2>
           </div>

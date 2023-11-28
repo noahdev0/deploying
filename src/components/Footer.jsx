@@ -60,7 +60,7 @@ export default function Footer() {
             <div className="col-lg-12 ">
               <p className="copyright text-center">
                 {" "}
-                &copy; Copyright 2023 All right reserved
+                &copy; Copyright {new Date().getFullYear()} All right reserved
               </p>
             </div>
           </div>

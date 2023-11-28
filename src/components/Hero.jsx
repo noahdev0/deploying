@@ -19,16 +19,19 @@ export default function Hero() {
               <div className="col-12 col-xl-6 col-lg-6 col-md-12 col-sm-12">
                 <h1>
                   With <strong>CSEN</strong> Innovating Structural Analysis,
-                  <br />
+                  
                   <strong>Securing</strong>Tomorrow
                 </h1>
                 <p>
-                  CSEN propose une solution innovante dans le domaine de
-                  l'analyse parasismique des constructions en Béton Armé, cette
-                  solution est conçue spécifiquement pour répondre aux exigences
-                  rigoureuses de la règlementation parasismique en Algérie.
-                  Notre solution offre une approche innovante pour évaluer et
-                  gérer les risques sismiques dans le domaine du bâtiment.
+                  CSEN s'engage à propulser le génie civil algérien vers de
+                  nouveaux sommets en fournissant des outils technologiques de
+                  pointe pour l'analyse et la conception de constructions
+                  résistantes aux séismes en Algérie. Notre dévouement à
+                  l'innovation et à l'excellence garantit que nos solutions
+                  permettent aux ingénieurs et aux parties prenantes de créer
+                  des structures résilientes conformes aux réglementations
+                  parasismiques, contribuant à la sécurité et à la durabilité
+                  des projets de construction en Algérie.
                 </p>
                 <Link
                   href="#product"
@@ -36,9 +39,7 @@ export default function Hero() {
                   Télécharger
                 </Link>
               </div>
-              <motion.div 
-              
-              className="col-xl-6 col-lg-6 col-md-12 col-sm-12 ">
+              <motion.div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 ">
                 <Image src={rpa} alt="RPA Plug-in" className="rpa-image" />
               </motion.div>
             </div>

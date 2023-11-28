@@ -16,27 +16,31 @@ export const sections = [
  * An array of products.
  * @type {Product[]}
  */
+//TODO : add logo
+
 export const products = [
   {
     // logo: premium,
-    icon: "fa fa-desktop",
+    image: "Logo1",
     url: "https://later.later.com/assets/img/instagram-scheduling.png",
-    title: "Desktop version",
-    discription: `Notre produit phare,
-         offrant une analyse parasismiquesophistiquée pour les structures en béton armé,
-         en accordant uneattention particulière à l'équilibre entre le rapportrésistance/économie`,
+    title: "La version Premium",
+    discription: `Notre produit phare offre une analyse parasismique avancée pour les structures en béton armé,
+     en mettant particulièrement l'accent sur le bon équilibre entre la robustesse structurelle et la rentabilité. 
+     Nous insistons particulièrement sur l'application stricte des critères imposés par le code, la convergence vers un dimensionnement optimal, 
+     la fourniture de ratios de vérification ainsi que des suggestions. Tout cela est réalisé avec des méthodes innovantes tout en gardant l'esprit de l'actualité,
+      assurant ainsi une approche complète et à la pointe de la technologie pour une conception parasismique meilleur.`,
   },
   {
     // logo: cloud,
-    icon: "fa fa-cloud",
+    image: "Logo2",
     url: "https://later.later.com/assets/img/instagram-scheduling.png",
-    title: "Cloud version",
-    discription: `Ce produit contient principalement la version Premium de RPA
-            Plug-in avec un Cloud a fin de vivre une expérience
-            professionnelle complète, permettant une gestion fluide, une
-            sauvegarde sécurisée, une organisation optimale avec un
-            transfert facile des projets entre les membres du Cloud ou d'un
-            Cloud a un autre.`,
+    title: "La version Cloud",
+    discription: `La version Cloud offre une expérience collaborative avancée en combinant une structure organisationnelle
+     élaborée avec trois catégories d'utilisateurs.
+    Les utilisateurs autorisés peuvent télécharger les projets existants du Cloud vers leur machine locale,
+     favorisant la collaboration et le partage d'informations. En parallèle, la flexibilité est préservée avec 
+     la possibilité de transférer des projets entre différents Clouds, facilitant une collaboration transparente et efficace entre les utilisateurs
+      et d'un Cloud a un autre. Cette combinaison offre une gestion fluide, sécurisée et flexible des projets au sein de la version Cloud.`,
   },
 ];
 
