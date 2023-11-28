@@ -1,6 +1,3 @@
-//dashboard page
-// pages/secure-page.js
-import withAuth from "../lib/withAuth";
 
 const SecurePage = () => {
   return (
