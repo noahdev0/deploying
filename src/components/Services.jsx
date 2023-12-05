@@ -36,7 +36,7 @@ export default function Services() {
 
         <div className="row justify-center gap-10 align-middle" id="product">
           {/* //TODO : fix this bug */}
-          {products.map((product, index) => (
+          {products.map((product, index) =>( 
             <motion.div key={index} className="col-md-9 col-lg-5 col-12">
               <div className="bg-white shadow-lg rounded-lg p-6">
                 <div className="icon">
@@ -62,5 +62,5 @@ export default function Services() {
         </div>
       </div>
     </section>
-  );
+  ); 
 }

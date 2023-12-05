@@ -2,64 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
-body {
- 
-  font-family: "Raleway", sans-serif;
-}
 
 
-
-
-.section {
-  position: relative;
-  padding-top: 100px;
-  padding-bottom: 80px;
-}
 
 .section.colored {
   background: #f2f2fe;
 }
 
-.hr {
-  bottom: 0px;
-  width: 100%;
-  height: 1px;
-  margin-top: 100px;
-  border-bottom: 1px solid #eee;
-}
 
-.left-heading.light .section-title {
-  color: #ffffff;
-}
-
-.left-heading .section-title {
-  font-weight: 500;
-  font-size: 24px;
-  line-height: 42px;
-  color: #1e1e1e;
-  letter-spacing: 0.25px;
-  margin-bottom: 30px;
-  position: relative;
-}
-
-.center-heading {
-  text-align: center;
-}
 
 strong {
   background: -webkit-linear-gradient(#7c8fe3, #0b3fc1);
   background-clip: text;
   -webkit-text-fill-color: transparent;
-}
-
-.center-heading .section-title {
-  font-weight: 500;
-  font-size: 28px;
-  color: #1e1e1e;
-  letter-spacing: 1.75px;
-  line-height: 38px;
-  margin-bottom: 20px;
 }
 
 
@@ -73,142 +28,18 @@ strong {
   margin-bottom: 50px;
 }
 
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-div pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-font,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-figure,
-header,
-nav,
-section,
-article,
-aside,
-footer,
-figcaption {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  outline: 0;
-}
 
-.clearfix:after {
-  content: ".";
-  display: block;
-  clear: both;
-  visibility: hidden;
-  line-height: 0;
-  height: 0;
-}
 
-.clearfix {
-  display: inline-block;
-}
 
-html[xmlns] .clearfix {
-  display: block;
-}
 
-* html .clearfix {
-  height: 1%;
-}
 
-ul,
-li {
-  padding: 0;
-  margin: 0;
 
-  list-style: none;
-}
 
-header,
-nav,
-section,
-article,
-aside,
-footer,
-hgroup {
-  display: block;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-html,
-body {
-  font-family: "Raleway", sans-serif;
-  font-weight: 400;
-  background-color: #fff;
-  font-size: 16px;
-  -ms-text-size-adjust: 100%;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  scroll-padding-top: 4em;
-}
 
 a {
   text-decoration: none !important;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin-top: 0px;
-  margin-bottom: 0px;
-}
-
-ul {
-  margin-bottom: 0px;
-}
 
 strong {
   background: -webkit-linear-gradient(#eee, #0249d7);
@@ -227,28 +58,6 @@ strong {
 
 
 
-
-
-@media (max-width: 991px) {
-
-  html,
-  body {
-    overflow-x: hidden;
-  }
-
-  .mobile-top-fix {
-    margin-top: 30px;
-    margin-bottom: 0px;
-  }
-
-  .mobile-bottom-fix {
-    margin-bottom: 30px;
-  }
-
-  .mobile-bottom-fix-big {
-    margin-bottom: 60px;
-  }
-}
 
 
 a.main-button-slider {

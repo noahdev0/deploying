@@ -4,6 +4,7 @@ import { Style } from "@/utils/styles";
 
 import axios from "axios";
 import Link from "next/link";
+import Faq from "@/components/Faq";
 
 export default function Register() {
   const [name, setName] = useState("");
@@ -47,7 +48,7 @@ export default function Register() {
     if (validateForm()) {
       try {
         setSending(true);
-        await axios.post("/api/addUser", {
+        const response = await axios.post("/api/addUser", {
           name,
           lastName,
           title,
@@ -60,9 +61,15 @@ export default function Register() {
           company,
         });
         console.log("success");
+        if ((response.success = true)) {
+          alert("Votre message a été envoyé avec succès");
+        } else {
+          alert("Une erreur s'est produite, veuillez réessayer plus tard");
+        }
 
         // Use popup component to show success message
       } catch (error) {
+        console.error(error);
         // Use popup component to show generic error message
         // <Popup message={`The error is: ${error}`} />;
       } finally {
@@ -95,9 +102,9 @@ export default function Register() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-gray-700 overflow-x-hidden">
+    <div className="w-full min-h-screen overflow-x-hidden">
       <motion.h1
-        className="text-4xl text-center text-white font-bold mb-20"
+        className="text-4xl text-center font-bold mb-20"
         initial={{ opacity: 0, y: -20, scale: 0.5 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         drag
@@ -108,7 +115,7 @@ export default function Register() {
       <form
         onSubmit={handleSubmit}
         className="container mx-auto px-4 sm:px-8 max-w-3xl">
-        <div className="form-group">
+        <div className="form-group relative">
           <div className="row">
             <div className="col-lg-6">
               <label htmlFor="name" className={Style.lable}>
@@ -164,7 +171,7 @@ export default function Register() {
           />
         </div>
 
-        <div className="form-group">
+        <div className="form-group relative">
           <label htmlFor="email" className={Style.lable}>
             Email
             <i className="fa fa-asterisk text-danger ml-1"></i>
@@ -181,7 +188,7 @@ export default function Register() {
             <div className="invalid-feedback">{errors.email}</div>
           )}
         </div>
-        <div className="form-group">
+        <div className="form-group relative">
           <label htmlFor="address" className={Style.lable}>
             Address
             <i className="fa fa-asterisk text-danger ml-1"></i>
@@ -197,7 +204,7 @@ export default function Register() {
             <div className="invalid-feedback">{errors.address}</div>
           )}
         </div>
-        <div className="form-group">
+        <div className="form-group relative">
           <label htmlFor="phone" className={Style.lable}>
             Phone
           </label>
@@ -212,7 +219,7 @@ export default function Register() {
             <div className="invalid-feedback">{errors.phone}</div>
           )}
         </div>
-        <div className="form-group flex flex-row ">
+        <div className="form-group relative flex flex-row ">
           <label htmlFor="option" className={Style.lable}>
             Vous êtes:
           </label>
@@ -255,7 +262,7 @@ export default function Register() {
                 checked={status === "etudiant"}
                 onChange={handleStatus}
               />
-              Etudiant  
+              Etudiant
             </label>
           </div>
         </div>
@@ -361,6 +368,7 @@ export default function Register() {
           </Link>
         </motion.div>
       </form>
+      <Faq />
     </div>
   );
 }

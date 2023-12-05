@@ -3,7 +3,6 @@ import "@/styles/hero.css";
 import "@/styles/features.css";
 import "@/styles/footer.css";
 import "@/styles/partners.css";
-import "@/styles/services.css";
 import "@/styles/globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
