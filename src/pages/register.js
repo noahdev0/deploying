@@ -115,116 +115,120 @@ export default function Register() {
       <form
         onSubmit={handleSubmit}
         className="container mx-auto px-4 sm:px-8 max-w-3xl">
-        <div className="form-group relative">
-          <div className="row">
-            <div className="col-lg-6">
-              <label htmlFor="name" className={Style.lable}>
+        <div className="form-group m-3 relative">
+          <div className="grid grid-cols-1  sm:gap-5 sm:grid-cols-2">
+            <div>
+              <label htmlFor="name" className="block">
                 First name
-                <i className="fa fa-asterisk text-danger ml-1"></i>
+                <span className="text-red-500">*</span>
               </label>
               <input
                 id="name"
                 type="text"
                 name="name"
-                className={`${Style.input} ${errors.name ? "is-invalid" : ""}`}
+                className={`block w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 ${
+                  errors.name ? "border-red-500" : ""
+                }`}
                 value={name}
                 onChange={(event) => setName(event.target.value)}
                 required
               />
-              {errors.name && (
-                <div className="invalid-feedback">{errors.name}</div>
-              )}
+              {errors.name && <div className="text-red-500">{errors.name}</div>}
             </div>
-            <div className="col-lg-6">
-              <label htmlFor="lastName" className={Style.lable}>
+            <div>
+              <label htmlFor="lastName" className="block">
                 Last Name
-                <i className="fa fa-asterisk text-danger ml-1"></i>
+                <span className="text-red-500">*</span>
               </label>
               <input
                 id="lastName"
                 name="lastName"
                 type="text"
-                className={`${Style.input} ${
-                  errors.lastName ? "is-invalid" : ""
+                className={`block w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 ${
+                  errors.lastName ? "border-red-500" : ""
                 }`}
                 value={lastName}
                 onChange={(event) => setLastName(event.target.value)}
                 required
               />
               {errors.lastName && (
-                <div className="invalid-feedback">{errors.lastName}</div>
+                <div className="text-red-500">{errors.lastName}</div>
               )}
             </div>
           </div>
         </div>
-        <div className="form-group">
-          <label htmlFor="title" className={Style.lable}>
+        <div className="form-group m-3">
+          <label htmlFor="title" className="block">
             Job Title
           </label>
           <input
             type="text"
             name="title"
-            className={`${Style.input} ${errors.title ? "is-invalid" : ""}`}
+            className={`block w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 ${
+              errors.title ? "border-red-500" : ""
+            }`}
             value={title}
             onChange={(event) => setTitle(event.target.value)}
             required
           />
         </div>
 
-        <div className="form-group relative">
-          <label htmlFor="email" className={Style.lable}>
+        <div className="form-group m-3 relative">
+          <label htmlFor="email" className="block">
             Email
-            <i className="fa fa-asterisk text-danger ml-1"></i>
+            <span className="text-red-500">*</span>
           </label>
           <input
             type="text"
             name="email"
-            className={`${Style.input} ${errors.email ? "is-invalid" : ""}`}
+            className={`block w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 ${
+              errors.email ? "border-red-500" : ""
+            }`}
             value={email}
             onChange={(event) => setEmail(event.target.value)}
             required
           />
-          {errors.email && (
-            <div className="invalid-feedback">{errors.email}</div>
-          )}
+          {errors.email && <div className="text-red-500">{errors.email}</div>}
         </div>
-        <div className="form-group relative">
-          <label htmlFor="address" className={Style.lable}>
+        <div className="form-group m-3 relative">
+          <label htmlFor="address" className="block">
             Address
-            <i className="fa fa-asterisk text-danger ml-1"></i>
+            <span className="text-red-500">*</span>
           </label>
           <input
             type="text"
             name="address"
-            className={`${Style.input} ${errors.address ? "is-invalid" : ""}`}
+            className={`block w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 ${
+              errors.address ? "border-red-500" : ""
+            }`}
             value={address}
             onChange={(event) => setAddress(event.target.value)}
           />
           {errors.address && (
-            <div className="invalid-feedback">{errors.address}</div>
+            <div className="text-red-500">{errors.address}</div>
           )}
         </div>
-        <div className="form-group relative">
-          <label htmlFor="phone" className={Style.lable}>
+        <div className="form-group m-3 relative">
+          <label htmlFor="phone" className="block">
             Phone
           </label>
           <input
             type="text"
             name="phone"
-            className={`${Style.input} ${errors.phone ? "is-invalid" : ""}`}
+            className={`block w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 ${
+              errors.phone ? "border-red-500" : ""
+            }`}
             value={phone}
             onChange={(event) => setPhone(event.target.value)}
           />
-          {errors.phone && (
-            <div className="invalid-feedback">{errors.phone}</div>
-          )}
+          {errors.phone && <div className="text-red-500">{errors.phone}</div>}
         </div>
-        <div className="form-group relative flex flex-row ">
-          <label htmlFor="option" className={Style.lable}>
+        <div className="form-group m-3 relative flex flex-col gap-2 ">
+          <label htmlFor="option" className="block">
             Vous êtes:
           </label>
-          <div className="flex flex-row">
-            <label className={Style.lable}>
+          <div className="flex gap-5">
+            <label className="flex flex-col justify-center items-center">
               <input
                 type="radio"
                 name="option"
@@ -234,7 +238,7 @@ export default function Register() {
               />
               Agence
             </label>
-            <label className={Style.lable}>
+            <label className="flex flex-col justify-center items-center">
               <input
                 type="radio"
                 name="option"
@@ -244,7 +248,7 @@ export default function Register() {
               />
               Société
             </label>
-            <label className={Style.lable}>
+            <label className="flex flex-col justify-center items-center">
               <input
                 type="radio"
                 name="option"
@@ -252,9 +256,9 @@ export default function Register() {
                 checked={status === "bureau d'étude"}
                 onChange={handleStatus}
               />
-              Bureau d'étude
+               Bureau d'étude
             </label>
-            <label className={Style.lable}>
+            <label className="flex flex-col justify-center items-center">
               <input
                 type="radio"
                 name="option"
@@ -269,29 +273,31 @@ export default function Register() {
 
         {/* Show different input based on selected option */}
         {["agence", "bureau d'étude", "société"].includes(status) && (
-          <div className="form-group">
-            <label htmlFor="company" className={Style.lable}>
+          <div className="form-group m-3">
+            <label htmlFor="company" className="block">
               The Name OF the {status}
             </label>
             <input
               type="text"
               name="company"
-              className={Style.input}
+              className="block w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
               value={company}
               onChange={(event) => setCompany(event.target.value)}
             />
           </div>
         )}
 
-        <div className="form-group">
-          <label htmlFor="content_type" className="">
+        <div className="form-group m-3">
+          <label
+            htmlFor="content_type"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
             Vous êtes intéressé par:
           </label>
-          <label className={Style.lable}>
+          <label className="block">
             <input
               type="radio"
               name="content_type"
-              className={Style.input}
+              className="inline mx-2"
               value="La numérisation & l'automatisation"
               checked={target === "La numérisation & l'automatisation"}
               onChange={handleTarget}
@@ -299,11 +305,11 @@ export default function Register() {
             />
             La numérisation & l'automatisation
           </label>
-          <label className={Style.lable}>
+          <label className="block">
             <input
               type="radio"
               name="content_type"
-              className={Style.input}
+              className="inline mx-2"
               value="Le cryptage & la sécurité des données"
               checked={target === "Le cryptage & la sécurité des données"}
               onChange={handleTarget}
@@ -311,11 +317,11 @@ export default function Register() {
             />
             Le cryptage & la sécurité des données
           </label>
-          <label className={Style.lable}>
+          <label className="block">
             <input
               type="radio"
               name="content_type"
-              className={Style.input}
+              className="inline mx-2"
               value="La version Premium de RPA Plug-in"
               checked={target === "La version Premium de RPA Plug-in"}
               onChange={handleTarget}
@@ -323,11 +329,11 @@ export default function Register() {
             />
             La version Premium de RPA Plug-in
           </label>
-          <label className={Style.lable}>
+          <label className="block">
             <input
               type="radio"
               name="content_type"
-              className={Style.input}
+              className="inline mx-2"
               value="La version Cloud de RPA Plug-in"
               checked={target === "La version Cloud de RPA Plug-in"}
               onChange={handleTarget}
@@ -337,7 +343,7 @@ export default function Register() {
           </label>
         </div>
 
-        <div className="form-group">
+        <div className="form-group m-3">
           <label
             htmlFor="message"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -346,7 +352,7 @@ export default function Register() {
           <textarea
             rows="5"
             name="message"
-            className={`block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
+            className={`block w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
             value={message}
             onChange={(event) => setMessage(event.target.value)}
           />
