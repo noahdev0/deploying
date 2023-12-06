@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {motion} from "framer-motion";
+import { motion } from "framer-motion";
 export default function Faq() {
   const [active, setActive] = useState(false);
   return (

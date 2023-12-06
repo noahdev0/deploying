@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Style } from "@/utils/styles";
+import { Label, Radio } from "flowbite-react";
 
 import axios from "axios";
 import Link from "next/link";
 import Faq from "@/components/Faq";
+import Testing from "@/components/AlertComponent";
+import AlertComponent from "@/components/AlertComponent";
 
 export default function Register() {
   const [name, setName] = useState("");
@@ -19,6 +21,9 @@ export default function Register() {
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState({});
   const [sending, setSending] = useState(false);
+  const [res, setRes] = useState("");
+  const [alert, setAlert] = useState(false);
+  const [state, setState] = useState(true);
 
   const validateForm = () => {
     const errors = {};
@@ -61,19 +66,18 @@ export default function Register() {
           company,
         });
         console.log("success");
-        if ((response.success = true)) {
-          alert("Votre message a été envoyé avec succès");
-        } else {
-          alert("Une erreur s'est produite, veuillez réessayer plus tard");
-        }
+        setRes("Form has been submitted successfully ");
 
         // Use popup component to show success message
       } catch (error) {
-        console.error(error);
-        // Use popup component to show generic error message
-        // <Popup message={`The error is: ${error}`} />;
+        setState(false);
+        setRes(error.response.data);
       } finally {
         setSending(false);
+        setAlert(true);
+        setTimeout(() => {
+          setAlert(false);
+        }, 3000);
       }
     }
   };
@@ -229,7 +233,7 @@ export default function Register() {
           </label>
           <div className="flex gap-5">
             <label className="flex flex-col justify-center items-center">
-              <input
+              <Radio
                 type="radio"
                 name="option"
                 value="agence"
@@ -239,7 +243,7 @@ export default function Register() {
               Agence
             </label>
             <label className="flex flex-col justify-center items-center">
-              <input
+              <Radio
                 type="radio"
                 name="option"
                 value="société"
@@ -256,7 +260,7 @@ export default function Register() {
                 checked={status === "bureau d'étude"}
                 onChange={handleStatus}
               />
-               Bureau d'étude
+              Bureau d'étude
             </label>
             <label className="flex flex-col justify-center items-center">
               <input
@@ -375,6 +379,7 @@ export default function Register() {
         </motion.div>
       </form>
       <Faq />
+      <AlertComponent state={state} active={alert} res={res} />
     </div>
   );
 }
