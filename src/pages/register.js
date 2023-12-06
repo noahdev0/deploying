@@ -384,9 +384,14 @@ export default function Register() {
           </button>
         </motion.div>
       </form>
-      {faqArray.map((faq, index) => (
-        <Faq key={index} question={faq.question} answer={faq.answer} />
-      ))}
+      <section className="container mx-auto p-4 bg-gray-200">
+        <h2 className="text-center text-4xl font-bold mb-8">FAQ</h2>
+        {faqArray.map((faq, index) => (
+          <Faq key={index} question={faq.question} answer={faq.answer} />
+        ))}
+      </section>
+        
+     
       {/* <Faq question={"hello"} answer={"my answer"} /> */}
       <AlertComponent state={state} active={alert} res={res} />
     </div>

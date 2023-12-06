@@ -26,8 +26,11 @@ function Faq(props) {
           <motion.h2 className="text-xl font-bold flex justify-between items-center max-w-6xl mx-auto ">
             <span>{props.question}</span>{" "}
             <Plus
-              className="inline-block ml-2"
-              style={{ transform: `rotate(${isOpen ? "225deg" : "180deg"})` }}
+              className="inline-block ml-2 text-2xl"
+              style={{
+                transform: `rotate(${isOpen ? "225deg" : "180deg"})`,
+                transition: "transform 0.3s ease",
+              }}
             />
           </motion.h2>
           <motion.div
@@ -42,24 +45,6 @@ function Faq(props) {
           </motion.div>
         </motion.div>
       </div>
-    </div>
-  );
-
-  return (
-    <div className="p-4">
-      <motion.div layout className="cursor-pointer">
-        <motion.h2 layout className="text-xl font-bold">
-          {props.question}
-        </motion.h2>
-        <motion.div
-          layout
-          initial={{ y: 0, opacity: 0 }}
-          animate={{ y: isOpen ? 10 : 0, opacity: isOpen ? 1 : 0 }}
-          className={`mt-2 ${isOpen ? "block" : "hidden"}`}
-          style={{ transition: "all 0.3s ease" }}>
-          <p className="text-gray-700">{props.answer}</p>
-        </motion.div>
-      </motion.div>
     </div>
   );
 }
