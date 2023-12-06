@@ -122,10 +122,10 @@ export default function Register() {
         <div className="form-group m-3 relative">
           <div className="grid grid-cols-1  sm:gap-5 sm:grid-cols-2">
             <div>
-              <label htmlFor="name" className="block">
+              <Label htmlFor="name" className="block">
                 First name
                 <span className="text-red-500">*</span>
-              </label>
+              </Label>
               <input
                 id="name"
                 type="text"
@@ -140,10 +140,10 @@ export default function Register() {
               {errors.name && <div className="text-red-500">{errors.name}</div>}
             </div>
             <div>
-              <label htmlFor="lastName" className="block">
+              <Label htmlFor="lastName" className="block">
                 Last Name
                 <span className="text-red-500">*</span>
-              </label>
+              </Label>
               <input
                 id="lastName"
                 name="lastName"
@@ -162,9 +162,9 @@ export default function Register() {
           </div>
         </div>
         <div className="form-group m-3">
-          <label htmlFor="title" className="block">
+          <Label htmlFor="title" className="block">
             Job Title
-          </label>
+          </Label>
           <input
             type="text"
             name="title"
@@ -178,10 +178,10 @@ export default function Register() {
         </div>
 
         <div className="form-group m-3 relative">
-          <label htmlFor="email" className="block">
+          <Label htmlFor="email" className="block">
             Email
             <span className="text-red-500">*</span>
-          </label>
+          </Label>
           <input
             type="text"
             name="email"
@@ -195,10 +195,10 @@ export default function Register() {
           {errors.email && <div className="text-red-500">{errors.email}</div>}
         </div>
         <div className="form-group m-3 relative">
-          <label htmlFor="address" className="block">
+          <Label htmlFor="address" className="block">
             Address
             <span className="text-red-500">*</span>
-          </label>
+          </Label>
           <input
             type="text"
             name="address"
@@ -213,9 +213,9 @@ export default function Register() {
           )}
         </div>
         <div className="form-group m-3 relative">
-          <label htmlFor="phone" className="block">
+          <Label htmlFor="phone" className="block">
             Phone
-          </label>
+          </Label>
           <input
             type="text"
             name="phone"
@@ -228,11 +228,11 @@ export default function Register() {
           {errors.phone && <div className="text-red-500">{errors.phone}</div>}
         </div>
         <div className="form-group m-3 relative flex flex-col gap-2 ">
-          <label htmlFor="option" className="block">
+          <Label htmlFor="option" className="block">
             Vous êtes:
-          </label>
+          </Label>
           <div className="flex gap-5">
-            <label className="flex flex-col justify-center items-center">
+            <Label className="flex flex-col justify-center items-center">
               <Radio
                 type="radio"
                 name="option"
@@ -241,8 +241,8 @@ export default function Register() {
                 onChange={handleStatus}
               />
               Agence
-            </label>
-            <label className="flex flex-col justify-center items-center">
+            </Label>
+            <Label className="flex flex-col justify-center items-center">
               <Radio
                 type="radio"
                 name="option"
@@ -251,8 +251,8 @@ export default function Register() {
                 onChange={handleStatus}
               />
               Société
-            </label>
-            <label className="flex flex-col justify-center items-center">
+            </Label>
+            <Label className="flex flex-col justify-center items-center">
               <input
                 type="radio"
                 name="option"
@@ -261,8 +261,8 @@ export default function Register() {
                 onChange={handleStatus}
               />
               Bureau d'étude
-            </label>
-            <label className="flex flex-col justify-center items-center">
+            </Label>
+            <Label className="flex flex-col justify-center items-center">
               <input
                 type="radio"
                 name="option"
@@ -271,16 +271,16 @@ export default function Register() {
                 onChange={handleStatus}
               />
               Etudiant
-            </label>
+            </Label>
           </div>
         </div>
 
         {/* Show different input based on selected option */}
         {["agence", "bureau d'étude", "société"].includes(status) && (
           <div className="form-group m-3">
-            <label htmlFor="company" className="block">
+            <Label htmlFor="company" className="block">
               The Name OF the {status}
-            </label>
+            </Label>
             <input
               type="text"
               name="company"
@@ -292,13 +292,13 @@ export default function Register() {
         )}
 
         <div className="form-group m-3">
-          <label
+          <Label
             htmlFor="content_type"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
             Vous êtes intéressé par:
-          </label>
-          <label className="block">
-            <input
+          </Label>
+          <Label className="block">
+            <Radio
               type="radio"
               name="content_type"
               className="inline mx-2"
@@ -308,8 +308,8 @@ export default function Register() {
               required // Add the 'required' attribute
             />
             La numérisation & l'automatisation
-          </label>
-          <label className="block">
+          </Label>
+          <Label className="block">
             <input
               type="radio"
               name="content_type"
@@ -320,8 +320,8 @@ export default function Register() {
               required // Add the 'required' attribute
             />
             Le cryptage & la sécurité des données
-          </label>
-          <label className="block">
+          </Label>
+          <Label className="block">
             <input
               type="radio"
               name="content_type"
@@ -332,8 +332,8 @@ export default function Register() {
               required // Add the 'required' attribute
             />
             La version Premium de RPA Plug-in
-          </label>
-          <label className="block">
+          </Label>
+          <Label className="block">
             <input
               type="radio"
               name="content_type"
@@ -344,15 +344,15 @@ export default function Register() {
               required // Add the 'required' attribute
             />
             La version Cloud de RPA Plug-in
-          </label>
+          </Label>
         </div>
 
         <div className="form-group m-3">
-          <label
+          <Label
             htmlFor="message"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
             Message :
-          </label>
+          </Label>
           <textarea
             rows="5"
             name="message"
@@ -366,16 +366,16 @@ export default function Register() {
           style={{ overflow: "hidden", position: "relative", bottom: "2vh" }}>
           <motion.button
             type="submit"
-            className="btn btn-primary"
+            className="bg-teal-700 text-white px-4 py-2 rounded-lg"
             disabled={sending}
             whileTap={{ scale: 0.9 }}
             whileHover={{ scale: 1.1 }}
             animate={{ opacity: sending ? 0.5 : 1 }}>
             {sending ? "Sending..." : "Submit"}
           </motion.button>
-          <Link href="/" className="btn btn-secondary ml-2">
+          <button type="" className="bg-teal-300 text-black px-4 py-2 rounded-lg">
             Home
-          </Link>
+          </button>
         </motion.div>
       </form>
       <Faq />
