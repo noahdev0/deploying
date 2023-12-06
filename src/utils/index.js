@@ -18,6 +18,27 @@ export const sections = [
  */
 //TODO : add logo
 
+export const faqArray = [
+  {
+    question: "Qu'est-ce que RPA Plug-in ?",
+    answer: `RPA Plug-in est un outil de conception parasismique pour les bâtiments en béton armé, développé en étroite collaboration avec des experts dans la conception parasismique des bâtiments et est totalement conforme aux normes et aux règles parasismiques en vigueur en Algérie.`,
+  },
+  {
+    question: "Quels sont les avantages de RPA Plug-in ?",
+    answer: `Notre solution offre une analyse parasismique de haute qualité associée à des propositions économiques optimales, trouvant l'équilibre parfait entre robustesse et coûts. L'automatisation intégrée garantit des calculs complexes et volumineux réalisés avec rapidité et précision, facilitant ainsi le processus pour les bureaux d'étude et au CTC de prendre des décisions informées pour la conception et la construction de bâtiments résistants aux séismes.`,
+  },
+  {
+    question: "Quelles sont les fonctionnalités de RPA Plug-in ?",
+    answer: `RPA Plug-in offre une analyse parasismique avancée pour les structures en béton armé, mettant particulièrement l'accent sur le bon équilibre entre la robustesse structurelle et la rentabilité. Nous insistons particulièrement sur l'application stricte des critères imposés par le code, la convergence vers un dimensionnement optimal, la fourniture de ratios de vérification ainsi que des suggestions. Tout cela est réalisé avec des méthodes innovantes tout en gardant l'esprit de l'actualité, assurant ainsi une approche complète et à la pointe de la technologie pour une conception parasismique meilleur.`,
+  },
+  {
+    question:
+      "Quelles sont les fonctionnalités de la version Cloud de RPA Plug-in ?",
+    answer:
+      "La version Cloud offre une expérience collaborative avancée en combinant une structure organisationnelle élaborée avec trois catégories d'utilisateurs. Les utilisateurs autorisés peuvent télécharger les projets existants du Cloud vers leur machine locale, favorisant la collaboration et le partage d'informations. En parallèle, la flexibilité est préservée avec la possibilité de transférer des projets entre différents Clouds, facilitant une collaboration transparente et efficace entre les utilisateurs et d'un Cloud a un autre. Cette combinaison offre une gestion fluide, sécurisée et flexible des projets au sein de la version Cloud.",
+  },
+];
+
 export const products = [
   {
     // logo: premium,

@@ -5,7 +5,7 @@ import { Label, Radio } from "flowbite-react";
 import axios from "axios";
 import Link from "next/link";
 import Faq from "@/components/Faq";
-import Testing from "@/components/AlertComponent";
+import { faqArray } from "@/utils";
 import AlertComponent from "@/components/AlertComponent";
 
 export default function Register() {
@@ -118,7 +118,7 @@ export default function Register() {
       </motion.h1>
       <form
         onSubmit={handleSubmit}
-        className="container mx-auto px-4 sm:px-8 max-w-3xl">
+        className="container mx-auto px-4  max-w-6xl">
         <div className="form-group m-3 relative">
           <div className="grid grid-cols-1  sm:gap-5 sm:grid-cols-2">
             <div>
@@ -166,6 +166,7 @@ export default function Register() {
             Job Title
           </Label>
           <input
+            id="title"
             type="text"
             name="title"
             className={`block w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 ${
@@ -183,6 +184,7 @@ export default function Register() {
             <span className="text-red-500">*</span>
           </Label>
           <input
+            id="email"
             type="text"
             name="email"
             className={`block w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 ${
@@ -200,6 +202,7 @@ export default function Register() {
             <span className="text-red-500">*</span>
           </Label>
           <input
+            id="address"
             type="text"
             name="address"
             className={`block w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 ${
@@ -217,6 +220,7 @@ export default function Register() {
             Phone
           </Label>
           <input
+            id="phone"
             type="text"
             name="phone"
             className={`block w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 ${
@@ -282,6 +286,7 @@ export default function Register() {
               The Name OF the {status}
             </Label>
             <input
+              id="company"
               type="text"
               name="company"
               className="block w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
@@ -292,16 +297,14 @@ export default function Register() {
         )}
 
         <div className="form-group m-3">
-          <Label
-            htmlFor="content_type"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+          <Label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
             Vous êtes intéressé par:
           </Label>
           <Label className="block">
             <Radio
               type="radio"
               name="content_type"
-              className="inline mx-2"
+              className=" mx-3"
               value="La numérisation & l'automatisation"
               checked={target === "La numérisation & l'automatisation"}
               onChange={handleTarget}
@@ -313,7 +316,7 @@ export default function Register() {
             <input
               type="radio"
               name="content_type"
-              className="inline mx-2"
+              className=" mx-3"
               value="Le cryptage & la sécurité des données"
               checked={target === "Le cryptage & la sécurité des données"}
               onChange={handleTarget}
@@ -325,7 +328,7 @@ export default function Register() {
             <input
               type="radio"
               name="content_type"
-              className="inline mx-2"
+              className=" mx-3"
               value="La version Premium de RPA Plug-in"
               checked={target === "La version Premium de RPA Plug-in"}
               onChange={handleTarget}
@@ -337,7 +340,7 @@ export default function Register() {
             <input
               type="radio"
               name="content_type"
-              className="inline mx-2"
+              className=" mx-3"
               value="La version Cloud de RPA Plug-in"
               checked={target === "La version Cloud de RPA Plug-in"}
               onChange={handleTarget}
@@ -354,6 +357,7 @@ export default function Register() {
             Message :
           </Label>
           <textarea
+            id="message"
             rows="5"
             name="message"
             className={`block w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
@@ -362,7 +366,7 @@ export default function Register() {
           />
         </div>
         <motion.div
-          className="d-flex w-full align-middle justify-between my-5 "
+          className="flex w-full items-center justify-between my-5 "
           style={{ overflow: "hidden", position: "relative", bottom: "2vh" }}>
           <motion.button
             type="submit"
@@ -373,12 +377,17 @@ export default function Register() {
             animate={{ opacity: sending ? 0.5 : 1 }}>
             {sending ? "Sending..." : "Submit"}
           </motion.button>
-          <button type="" className="bg-teal-300 text-black px-4 py-2 rounded-lg">
+          <button
+            type=""
+            className="bg-teal-300 text-black px-4 py-2 rounded-lg">
             Home
           </button>
         </motion.div>
       </form>
-      <Faq />
+      {faqArray.map((faq, index) => (
+        <Faq key={index} question={faq.question} answer={faq.answer} />
+      ))}
+      {/* <Faq question={"hello"} answer={"my answer"} /> */}
       <AlertComponent state={state} active={alert} res={res} />
     </div>
   );
