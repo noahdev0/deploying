@@ -24,7 +24,11 @@ function Faq(props) {
       <div className="container mx-auto">
         <motion.div className="cursor-pointer" onClick={toggleOpen}>
           <motion.h2 className="text-xl font-bold flex justify-between items-center max-w-6xl mx-auto ">
-            <span>{props.question}</span> <Plus className="inline-block ml-2" />
+            <span>{props.question}</span>{" "}
+            <Plus
+              className="inline-block ml-2"
+              style={{ transform: `rotate(${isOpen ? "225deg" : "180deg"})` }}
+            />
           </motion.h2>
           <motion.div
             initial="closed"
