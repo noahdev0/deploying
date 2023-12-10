@@ -1,6 +1,20 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { Plus } from "react-bootstrap-icons";
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import Typography from "@mui/material/Typography";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import {
+  Container,
+  Grid,
+  Card,
+  CardHeader,
+  CardContent,
+  Divider,
+} from "@mui/material";
+import { faqArray } from "@/utils";
 
 function Faq(props) {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,32 +34,35 @@ function Faq(props) {
   };
 
   return (
-    <div className="w-full p-3 outline-slate-800 overflow-hidden">
-      <div className="container mx-auto">
-        <motion.div className="cursor-pointer" onClick={toggleOpen}>
-          <motion.h2 className="text-xl font-bold flex justify-between items-center max-w-6xl mx-auto ">
-            <span>{props.question}</span>{" "}
-            <Plus
-              className="inline-block ml-2 text-2xl"
-              style={{
-                transform: `rotate(${isOpen ? "225deg" : "180deg"})`,
-                transition: "transform 0.3s ease",
-              }}
-            />
-          </motion.h2>
-          <motion.div
-            initial="closed"
-            animate={isOpen ? "open" : "closed"}
-            variants={containerVariants}
-            className={`mt-2 max-w-5xl mx-auto ${isOpen ? "block" : "hidden"}`}
-            style={{ transition: "height 0.3s ease" }}>
-            <motion.p variants={contentVariants} className="text-gray-800">
-              {props.answer}
-            </motion.p>
-          </motion.div>
-        </motion.div>
-      </div>
-    </div>
+    <Container maxWidth="lg">
+      <Grid
+        container
+        direction="row"
+        justifyContent="center"
+        alignItems="stretch"
+        spacing={3}>
+        <Grid item xs={12}>
+          <Card>
+            <Divider />
+            <CardContent>
+              {faqArray.map((faq, index) => (
+                <Accordion key={index}>
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header">
+                    <Typography>{faq.question}</Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Typography>{faq.answer}</Typography>
+                  </AccordionDetails>
+                </Accordion>
+              ))}
+            </CardContent>
+          </Card>
+        </Grid>
+      </Grid>
+    </Container>
   );
 }
 

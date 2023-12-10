@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-  // Define the schema for your data
   name: {
     type: String,
     required: true,
@@ -18,10 +17,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  address: {
-    type: String,
-    required: false,
-  },
+  address: String,
   phone: {
     type: String,
     required: true,
@@ -30,10 +26,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  company: {
-    type: String,
-    required: false,
-  },
+  company: String,
   target: {
     type: String,
     required: true,
@@ -44,7 +37,6 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-// Create a model for the schema
 const User = mongoose.models.User || mongoose.model("User", userSchema);
 
 export default User;

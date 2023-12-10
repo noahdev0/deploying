@@ -1,41 +1,29 @@
-import bcrypt from 'bcrypt';
+import connectToDatabase from "../../lib/db";
+i;
 
-export default function handler(req, res) {
-    if (req.method === 'POST') {
-        // Retrieve the username and password from the request body
-        const { username, password } = req.body;
+export default async function handler(req, res) {
+  // Check if the request has a valid authentication token
+  const authToken = req.headers.authorization;
+  if (!authToken || authToken !== "123456789") {
+    res.status(401).json({ message: "Unauthorized" });
+    return;
+  }
 
-        // Perform authentication logic here
-        if (isValidCredentials(username, password)) {
-            // If authentication is successful, return a success response
-            res.status(200).json({ message: 'Login successful' });
-        } else {
-            // If authentication fails, return an error response
-            res.status(401).json({ message: 'Invalid username or password' });
-        }
-    } else {
-        // Return a 405 Method Not Allowed error for non-POST requests
-        res.status(405).json({ message: 'Method Not Allowed' });
+  if (req.method === "GET") {
+    try {
+      const filter = {};
+      const client = await connectToDatabase();
+
+      const coll = client.db("csen-users").collection("users");
+      const cursor = coll.find(filter);
+      const result = await cursor.toArray();
+      await client.close();
+      return res.status(200).json(result);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Internal Server Error" });
     }
-}
-
-async function isValidCredentials(username, password) {
-    // Implement your authentication logic here
-    // For example, check if the username and password match a user in the database
-    // Return true if the credentials are valid, false otherwise
-    // You can replace this with your own implementation
-
-    // Retrieve the hashed password from the database for the given username
-    const hashedPassword = await getHashedPassword(username);
-
-    // Compare the provided password with the hashed password
-    return await bcrypt.compare(password, hashedPassword);
-}
-
-async function getHashedPassword(username) {
-    // Retrieve the hashed password from the database for the given username
-    // Replace this with your own implementation to fetch the hashed password from the database
-    // For example, you can use an ORM or query the database directly
-    const user = await User.findOne({ username });
-    return user ? user.password : null;
+  } else {
+    res.status(405).json({ message: "Method Not Allowed" });
+  }
 }

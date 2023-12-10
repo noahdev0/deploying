@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Label, Radio } from "flowbite-react";
 
 import axios from "axios";
 import Link from "next/link";
 import Faq from "@/components/Faq";
 import { faqArray } from "@/utils";
 import AlertComponent from "@/components/AlertComponent";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import RadioGroup from "@/components/form/RadioGroup";
 
 export default function Register() {
   const [name, setName] = useState("");
@@ -24,6 +26,12 @@ export default function Register() {
   const [res, setRes] = useState("");
   const [alert, setAlert] = useState(false);
   const [state, setState] = useState(true);
+  const options = [
+    { label: "Agence", value: "agence" },
+    { label: "Société", value: "société" },
+    { label: "Bureau d'étude", value: "bureau d'étude" },
+    { label: "Etudiant", value: "etudiant" },
+  ];
 
   const validateForm = () => {
     const errors = {};
@@ -67,11 +75,14 @@ export default function Register() {
         });
         console.log("success");
         setRes("Form has been submitted successfully ");
+        setState(true);
+
+        // throw new Error();
 
         // Use popup component to show success message
       } catch (error) {
         setState(false);
-        setRes(error.response.data);
+        setRes(error.response.data.error);
       } finally {
         setSending(false);
         setAlert(true);
@@ -97,12 +108,12 @@ export default function Register() {
     }
   }, [sending]);
 
-  const handleTarget = (event) => {
-    setTarget(event.target.value);
+  const handleTarget = ({ target }) => {
+    setTarget(target.value);
   };
 
-  const handleStatus = (event) => {
-    setStatus(event.target.value);
+  const handleStatus = ({ target }) => {
+    setStatus(target.value);
   };
 
   return (
@@ -119,172 +130,126 @@ export default function Register() {
       <form
         onSubmit={handleSubmit}
         className="container mx-auto px-4  max-w-6xl">
-        <div className="form-group m-3 relative">
+        <div className="form-group m-3">
           <div className="grid grid-cols-1  sm:gap-5 sm:grid-cols-2">
             <div>
-              <Label htmlFor="name" className="block">
-                First name
-                <span className="text-red-500">*</span>
-              </Label>
-              <input
+              <TextField
                 id="name"
-                type="text"
-                name="name"
-                className={`block w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 ${
-                  errors.name ? "border-red-500" : ""
-                }`}
+                label="Name"
+                type="name"
+                variant="filled"
+                sx={{ width: "100%", margin: "0.5rem" }}
                 value={name}
-                onChange={(event) => setName(event.target.value)}
+                onChange={({ target }) => setName(target.value)}
                 required
+                error={errors.name}
+                texthelper={errors.name}
               />
-              {errors.name && <div className="text-red-500">{errors.name}</div>}
             </div>
             <div>
-              <Label htmlFor="lastName" className="block">
-                Last Name
-                <span className="text-red-500">*</span>
-              </Label>
-              <input
+              <TextField
                 id="lastName"
+                label=" Last Name"
+                type="lastName"
+                variant="filled"
                 name="lastName"
-                type="text"
-                className={`block w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 ${
-                  errors.lastName ? "border-red-500" : ""
-                }`}
+                inputProps={{ maxLength: 15 }} // Add this line to set the maximum input character limit
+                sx={{ width: "100%", margin: "0.5rem" }}
                 value={lastName}
-                onChange={(event) => setLastName(event.target.value)}
+                onChange={({ target }) => setLastName(target.value)}
                 required
+                error={errors.lastName}
+                texthelper={errors.lastName}
               />
-              {errors.lastName && (
-                <div className="text-red-500">{errors.lastName}</div>
-              )}
             </div>
           </div>
         </div>
         <div className="form-group m-3">
-          <Label htmlFor="title" className="block">
-            Job Title
-          </Label>
-          <input
-            id="title"
-            type="text"
+          <TextField
+            id="filled-multiline-flexible"
+            label="Title"
             name="title"
-            className={`block w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 ${
-              errors.title ? "border-red-500" : ""
-            }`}
+            variant="filled"
+            multiline
+            maxRows={0}
+            inputProps={{ maxLength: 20 }}
+            sx={{ width: "100%", margin: "0.5rem" }}
             value={title}
             onChange={(event) => setTitle(event.target.value)}
             required
+            error={errors.title}
+            texthelper={errors.title}
           />
         </div>
 
         <div className="form-group m-3 relative">
-          <Label htmlFor="email" className="block">
-            Email
-            <span className="text-red-500">*</span>
-          </Label>
-          <input
-            id="email"
-            type="text"
+          <TextField
+            id="filled-multiline-flexible"
+            label="Email"
+            type="mail"
             name="email"
-            className={`block w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 ${
-              errors.email ? "border-red-500" : ""
-            }`}
+            variant="filled"
+            inputProps={{ maxLength: 25 }}
+            sx={{ width: "100%", margin: "0.5rem" }}
             value={email}
-            onChange={(event) => setEmail(event.target.value)}
+            onChange={({ target }) => setEmail(target.value)}
             required
+            error={errors.email}
+            texthelper={errors.email}
           />
-          {errors.email && <div className="text-red-500">{errors.email}</div>}
         </div>
         <div className="form-group m-3 relative">
-          <Label htmlFor="address" className="block">
-            Address
-            <span className="text-red-500">*</span>
-          </Label>
-          <input
-            id="address"
+          <TextField
+            id="adress"
+            label="Address"
             type="text"
+            variant="filled"
             name="address"
-            className={`block w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 ${
-              errors.address ? "border-red-500" : ""
-            }`}
+            multiline
+            maxRows={0}
+            inputProps={{ maxLength: 25 }}
+            sx={{ width: "100%", margin: "0.5rem" }}
             value={address}
-            onChange={(event) => setAddress(event.target.value)}
+            onChange={({ target }) => setAddress(target.value)}
+            required
+            error={errors.address}
+            texthelper={errors.address}
           />
-          {errors.address && (
-            <div className="text-red-500">{errors.address}</div>
-          )}
         </div>
         <div className="form-group m-3 relative">
-          <Label htmlFor="phone" className="block">
-            Phone
-          </Label>
-          <input
+          <TextField
             id="phone"
-            type="text"
+            label="Phone Number"
+            type="phone"
+            variant="filled"
             name="phone"
-            className={`block w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 ${
-              errors.phone ? "border-red-500" : ""
-            }`}
+            inputProps={{ maxLength: 25 }}
+            sx={{ width: "100%", margin: "0.5rem" }}
             value={phone}
-            onChange={(event) => setPhone(event.target.value)}
+            onChange={({ target }) => setPhone(target.value)}
+            required
+            error={errors.phone}
+            texthelper={errors.phone}
           />
-          {errors.phone && <div className="text-red-500">{errors.phone}</div>}
         </div>
-        <div className="form-group m-3 relative flex flex-col gap-2 ">
-          <Label htmlFor="option" className="block">
-            Vous êtes:
-          </Label>
-          <div className="flex gap-5">
-            <Label className="flex flex-col justify-center items-center">
-              <Radio
-                type="radio"
-                name="option"
-                value="agence"
-                checked={status === "agence"}
-                onChange={handleStatus}
-              />
-              Agence
-            </Label>
-            <Label className="flex flex-col justify-center items-center">
-              <Radio
-                type="radio"
-                name="option"
-                value="société"
-                checked={status === "société"}
-                onChange={handleStatus}
-              />
-              Société
-            </Label>
-            <Label className="flex flex-col justify-center items-center">
-              <input
-                type="radio"
-                name="option"
-                value="bureau d'étude"
-                checked={status === "bureau d'étude"}
-                onChange={handleStatus}
-              />
-              Bureau d'étude
-            </Label>
-            <Label className="flex flex-col justify-center items-center">
-              <input
-                type="radio"
-                name="option"
-                value="etudiant"
-                checked={status === "etudiant"}
-                onChange={handleStatus}
-              />
-              Etudiant
-            </Label>
-          </div>
+
+        <div className="form-group m-3">
+          <RadioGroup
+            label={"Vous êtes:"}
+            name="status"
+            value={status}
+            onChange={handleStatus}
+            options={options}
+            selectedValue={status}
+          />
         </div>
 
         {/* Show different input based on selected option */}
         {["agence", "bureau d'étude", "société"].includes(status) && (
           <div className="form-group m-3">
-            <Label htmlFor="company" className="block">
+            <label htmlFor="company" className="block">
               The Name OF the {status}
-            </Label>
+            </label>
             <input
               id="company"
               type="text"
@@ -297,11 +262,11 @@ export default function Register() {
         )}
 
         <div className="form-group m-3">
-          <Label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
             Vous êtes intéressé par:
-          </Label>
-          <Label className="block">
-            <Radio
+          </label>
+          <label className="block">
+            <input
               type="radio"
               name="content_type"
               className=" mx-3"
@@ -311,8 +276,8 @@ export default function Register() {
               required // Add the 'required' attribute
             />
             La numérisation & l'automatisation
-          </Label>
-          <Label className="block">
+          </label>
+          <label className="block">
             <input
               type="radio"
               name="content_type"
@@ -323,8 +288,8 @@ export default function Register() {
               required // Add the 'required' attribute
             />
             Le cryptage & la sécurité des données
-          </Label>
-          <Label className="block">
+          </label>
+          <label className="block">
             <input
               type="radio"
               name="content_type"
@@ -335,8 +300,8 @@ export default function Register() {
               required // Add the 'required' attribute
             />
             La version Premium de RPA Plug-in
-          </Label>
-          <Label className="block">
+          </label>
+          <label className="block">
             <input
               type="radio"
               name="content_type"
@@ -347,15 +312,15 @@ export default function Register() {
               required // Add the 'required' attribute
             />
             La version Cloud de RPA Plug-in
-          </Label>
+          </label>
         </div>
 
         <div className="form-group m-3">
-          <Label
+          <label
             htmlFor="message"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
             Message :
-          </Label>
+          </label>
           <textarea
             id="message"
             rows="5"
@@ -365,33 +330,22 @@ export default function Register() {
             onChange={(event) => setMessage(event.target.value)}
           />
         </div>
-        <motion.div
-          className="flex w-full items-center justify-between my-5 "
-          style={{ overflow: "hidden", position: "relative", bottom: "2vh" }}>
-          <motion.button
+        <div className="flex w-full items-center justify-between my-5 ">
+          <Button
+            variant="contained"
+            color="primary"
             type="submit"
-            className="bg-teal-700 text-white px-4 py-2 rounded-lg"
-            disabled={sending}
-            whileTap={{ scale: 0.9 }}
-            whileHover={{ scale: 1.1 }}
-            animate={{ opacity: sending ? 0.5 : 1 }}>
+            style={{ backgroundColor: "blue" }}>
             {sending ? "Sending..." : "Submit"}
-          </motion.button>
-          <button
-            type=""
-            className="bg-teal-300 text-black px-4 py-2 rounded-lg">
+          </Button>
+          <Button variant="outlined" color="primary" href={"/"}>
             Home
-          </button>
-        </motion.div>
+          </Button>
+        </div>
       </form>
-      <section className="container mx-auto p-4 bg-gray-200">
-        <h2 className="text-center text-4xl font-bold mb-8">FAQ</h2>
-        {faqArray.map((faq, index) => (
-          <Faq key={index} question={faq.question} answer={faq.answer} />
-        ))}
-      </section>
-        
-     
+
+      <Faq />
+
       {/* <Faq question={"hello"} answer={"my answer"} /> */}
       <AlertComponent state={state} active={alert} res={res} />
     </div>
